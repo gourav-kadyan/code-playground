@@ -1,3 +1,94 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.homepage {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: antiquewhite;
+}
+
+.form{
+  background: #2E2C59;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  border-radius: 15px;
+}
+
+.form img {
+  height: 80px;
+  margin-bottom: 30px;
+}
+
+.label{
+  margin-bottom: 10px;
+  margin-top: 0%;
+}
+
+
+.inputbox {
+  padding: 10px;
+  margin-bottom: 7px;
+  border-radius: 9px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  background: #eee;
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.Joinbtn {
+  background: #4aed88;
+  margin-bottom: 15px;
+}
+
+.Joinbtn:hover {
+  background: #2b824c;
+  color: gold;
+}
+
+.createNewRoomBtn {
+  background: indianred;
+  color: antiquewhite;
+}
+
+.createNewRoomBtn:hover {
+  background: crimson;
+  color: gold;
+}
+
+
+footer {
+  position: fixed;
+  bottom: 3%;
+}
+
+footer a {
+  color: #4aed88;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+footer a:hover{
+  color: gold;
+
 }
