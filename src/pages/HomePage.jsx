@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
 
+  const navigate = useNavigate();
+
   const [ roomid, setRoomid] = useState('');
+  const [ username, setUsername ] = useState('');
 
   //create a new room id and use hot-toast
   const createNewRoom = (e) => {
@@ -14,6 +18,26 @@ const HomePage = () => {
     toast.success("Successfully created a New Room");
   }
 
+  //creating a joinroom requirement and direction function
+  const joinRoom = (e) => {
+    if(!roomid || !username){
+      toast.error("RoomId and Username must be provided");
+      return;
+    }
+    navigate(`/editor/${roomid}`,{
+       state: {
+           username,
+       },
+    })
+    
+  }
+
+  const handleInputEnter = (e) => {
+      if(e.code === 'Enter'){
+        joinRoom(e);
+      }
+  }
+
   return (
     <div className="homepage">
       <div className="form">
@@ -21,10 +45,10 @@ const HomePage = () => {
         <h4 className="label">Paste Your Invitation ROOM ID</h4>
         <div className="input">
 
-          <input type="text" value={roomid} onChange={(e) => setRoomid(e.target.value)} className="inputbox" placeholder='ROOM ID' />
+          <input type="text" value={roomid} onChange={(e) => setRoomid(e.target.value)} className="inputbox" placeholder='ROOM ID' onKeyUp={handleInputEnter} />
 
-          <input type="text" className="inputbox" placeholder='USER NAME' />
-          <button className="btn Joinbtn">Join</button>
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="inputbox" placeholder='USER NAME' onKeyUp={handleInputEnter} />
+          <button onClick={joinRoom} className="btn Joinbtn">Join</button>
         </div>
         <span className="info">
           If you do not have any invite then create &nbsp; 
