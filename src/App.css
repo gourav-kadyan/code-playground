@@ -92,3 +92,71 @@ footer a:hover{
   color: gold;
 
 }
+
+.main-wrapper {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 100vh;
+}
+
+.left-wrapper {
+  background: #1c1e29;
+  padding: 16px;
+  color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+}
+
+.aside-inner {
+  flex: 1;
+}
+
+.clientList {
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.client {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.userName {
+  margin-top: 10px;
+}
+
+.logo {
+  border-radius: 1px solid #424242;
+  padding-bottom: 10px;
+}
+
+.logoImage {
+  height: 60px;
+}
+
+.leave-btn {
+  margin-top: 20px;
+  background: rgb(181, 79, 79);
+  color: white;
+  font-weight: bold;
+}
+
+.leave-btn:hover {
+  background: red;
+}
+
+.copy-btn {
+  background: #2b824c;
+  color: white;
+  font-weight: bold;
+}
+
+.copy-btn:hover {
+  background: #4aed88;
+
+}

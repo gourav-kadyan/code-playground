@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Client from '../Components/Client';
-
+import Editor from '../Components/Editor';
 
 const EditorPage = () => {
 
   const [ clients, setClients ] = useState([
     { socketId: 1, username : 'gourav'},
-    { socketId: 2, username : 'tony'}
+    { socketId: 2, username : 'tony Op'},
+    { sockerId: 3, username : 'Luffy K'}
   ]);
 
 
@@ -16,7 +17,7 @@ const EditorPage = () => {
         <div className='left-wrapper'>
           <div className='aside-inner'>
             <div className='logo'>
-              <img src="/code-sync.png" alt="" />
+              <img className='logoImage' src="/code-sync.png" alt="" />
             </div>
             <h3>Connected</h3>
             <div className='clientList'>
@@ -28,8 +29,12 @@ const EditorPage = () => {
               }
             </div>
           </div>
+          <button className='btn copy-btn'>Copy Room ID</button>
+          <button className='btn leave-btn'>Leave</button>
         </div>
-        <div className='editor-wrapper'>Editor goes here</div>
+        <div className='editor-wrapper'>
+          <Editor />
+        </div>
     </div>
   )
 }
