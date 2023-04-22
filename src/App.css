@@ -95,7 +95,7 @@ footer a:hover{
 
 .main-wrapper {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 260px 1fr;
   height: 100vh;
 }
 
@@ -159,4 +159,11 @@ footer a:hover{
 .copy-btn:hover {
   background: #4aed88;
 
+}
+
+.CodeMirror {
+  min-height: calc(50vh - 20px);
+  font-size: 20px;
+  line-height: 1.6;
+  padding-top: 20px;
 }
