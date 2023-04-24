@@ -41,8 +41,24 @@ const EditorPage = () => {
         setClients(clients);
       })
 
+      //listening for leave events
+      socketRef.current.on(ACTION.DISCONNECTED, ({socketId, username}) => {
+        toast.success(`${username} left the room `);
+        setClients((prev) => {
+          return prev.filter((client) => client.socketId !== socketId);
+        })
+      })
+
     }
     init();
+    //for cleaning 
+    return() => {
+      socketRef.current.disconnect();
+      socketRef.current.off(ACTION.DISCONNECTED);
+      socketRef.current.off(ACTION.JOINED);
+      // socketRef.current.off(ACTION.JOIN);
+
+    }
   },[])
 
   
