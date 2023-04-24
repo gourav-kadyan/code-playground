@@ -13,6 +13,24 @@ const EditorPage = () => {
   const reactNavigator = useNavigate();
   const { roomId } = useParams();
   const [ clients, setClients ] = useState([]);
+  const codeRef = useRef(null);
+
+
+  function copyRoomId(){
+    
+    try{
+      navigator.clipboard.writeText(roomId);
+      toast.success("RoomId has been copied")
+    }
+    catch(err){
+      toast.error("Couldn't copy")
+      console.log(err);
+    }
+  }
+
+  function leaveRoom() {
+    reactNavigator('/');
+  }
 
   useEffect(() => {
     const init = async() => {
@@ -39,7 +57,15 @@ const EditorPage = () => {
           console.log(`${username} joined`);
         }
         setClients(clients);
+        socketRef.current.emit(ACTION.SYNC_CODE, {
+          code : codeRef.current,
+          socketId,
+        })
       })
+
+
+      //sync code functionality
+      
 
       //listening for leave events
       socketRef.current.on(ACTION.DISCONNECTED, ({socketId, username}) => {
@@ -48,6 +74,8 @@ const EditorPage = () => {
           return prev.filter((client) => client.socketId !== socketId);
         })
       })
+
+     
 
     }
     init();
@@ -61,11 +89,15 @@ const EditorPage = () => {
     }
   },[])
 
+
+  
   
 
   if(!location.state){
     <Navigate to="/"/>
   }
+
+  
 
   return (
 
@@ -85,11 +117,11 @@ const EditorPage = () => {
               }
             </div>
           </div>
-          <button className='btn copy-btn'>Copy Room ID</button>
-          <button className='btn leave-btn'>Leave</button>
+          <button className='btn copy-btn' onClick={copyRoomId} >Copy Room ID</button>
+          <button className='btn leave-btn'onClick={leaveRoom} >Leave</button>
         </div>
         <div className='editor-wrapper'>
-          <Editor />
+          <Editor socketRef={socketRef} roomId={roomId} oncodechange={(code) => {codeRef.current = code}} />
         </div>
     </div>
   )
