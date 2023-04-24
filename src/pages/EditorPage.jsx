@@ -4,13 +4,15 @@ import Client from '../Components/Client';
 import Editor from '../Components/Editor';
 import ACTION from '../Action'
 import { initSocket } from '../socket';
-import { useLocation, useNavigate, Navigate } from 'react-router-dom';
+import { useLocation, useNavigate, Navigate, useParams } from 'react-router-dom';
 
-const EditorPage = ({roomId}) => {
+const EditorPage = () => {
 
   const socketRef = useRef(null);
   const location = useLocation();
   const reactNavigator = useNavigate();
+  const { roomId } = useParams();
+  const [ clients, setClients ] = useState([]);
 
   useEffect(() => {
     const init = async() => {
@@ -29,15 +31,21 @@ const EditorPage = ({roomId}) => {
         roomId,
         username : location.state?.username,
       });
+
+      //listenening for joined events
+      socketRef.current.on(ACTION.JOINED, ({clients,username,socketId}) => {
+        if(username !== location.state?.username){
+          toast.success(`${username} joined`)
+          console.log(`${username} joined`);
+        }
+        setClients(clients);
+      })
+
     }
     init();
   },[])
 
-  const [ clients, setClients ] = useState([
-    { socketId: 1, username : 'gourav'},
-    { socketId: 2, username : 'tony Op'},
-    { sockerId: 3, username : 'Luffy K'}
-  ]);
+  
 
   if(!location.state){
     <Navigate to="/"/>

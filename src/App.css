@@ -96,7 +96,7 @@ footer a:hover{
 .main-wrapper {
   display: grid;
   grid-template-columns: 260px 1fr;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .left-wrapper {
