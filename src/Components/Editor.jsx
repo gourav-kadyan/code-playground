@@ -16,7 +16,7 @@ const Editor = () => {
                 theme: 'dracula',
                 autoCloseTags: true,
                 autoCloseBrackets: true,
-                
+                lineNumbers: true,
             })
         }
         init();

@@ -7,7 +7,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 io.on('connection', (socket) => {
-    console.log('connection established socket connected '+ socket.id);
+    console.log('connection established socket connected ', socket.id);
 })
 
 const PORT = process.env.PORT || 5000;
