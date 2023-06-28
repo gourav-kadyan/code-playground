@@ -1,11 +1,20 @@
 const express = require('express');
 const app = express();
 const http = require('http');
+const path = require('path');
 const {Server} = require('socket.io');
 const ACTION = require('./src/Action');
 
 const server = http.createServer(app);
 const io = new Server(server);
+
+//for using production build
+app.use(express.static('build'));
+
+//for cannot get error we redirect all responses to index.html which is in build folder
+app.use((req,res,next)=>{
+    res.sendFile(path.join(__dirname,'build', 'index.html'));
+})
 
 const userSocketMap = {};
 
