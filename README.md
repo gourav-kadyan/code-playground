@@ -2,13 +2,16 @@
 
 #Command to run 
 
-npm start 
+  ### 'npm start' 
+
 #in this command i already add build and production so no problem just run and open in browser
-   http://localhost:5000/
+
+   ### 'http://localhost:5000/'
+
 #thats it
 
-#about project 
-Realtime Online Code Sync Editor Project Description:
+
+### Realtime Online Code Sync Editor Project:
 
 The Realtime Online Code Sync Editor is a web-based application that facilitates collaborative coding in real-time. The project is built using the following technologies: React.js, Node.js, Express.js, Socket.io, and CodeMirror.
 
